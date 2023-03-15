@@ -1,0 +1,59 @@
+## Scenario settings
+Scenario.name = ProphetCV
+Scenario.endTime = 43200
+
+## Defone node groups
+Scenario.nrofHostGroups =1
+
+## Common settings
+Group.movementModel = RandomWaypoint
+Group.router = ProphetWithCV
+Group.bufferSize = 10M
+Group.waitTime = 0, 120
+# All nodes have the bluetooth interface
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+# Walking speeds
+Group.speed = 2, 15
+# Message TTL of 1440 minutes (1 day)
+Group.msgTtl = 60
+Group.nrofHosts = 41
+
+## Message creation parameters 
+# How many event generators
+Events.nrof = 1
+# Class of the first event generator
+Events1.class = MessageEventGenerator
+# (following settings are specific for the MessageEventGenerator class)
+# Creation interval in seconds (one new message every 25 to 35 seconds)
+Events1.interval = 25,35
+# Message sizes (500kB - 1MB)
+Events1.size = 2500k
+# range of message source/destination addresses
+Events1.hosts = 0,40
+# Message ID prefix
+Events1.prefix = M
+
+# World's size for Movement Models without implicit size (width, height; meters)
+MovementModel.worldSize = 4500, 3400
+
+## Reports - all report names have to be valid report classes
+
+# how many reports to load
+Report.nrofReports = 1
+# length of the warm up period (simulated seconds)
+Report.warmup = 0
+# default directory of reports (can be overridden per Report with output setting)
+Report.reportDir = reports/ProphetCVRepots
+# Report classes to load
+Report.report1 = MessageDeliveredPerContactReport
+Report.report2 = NumberOfHopsPerMsgPerTimeReport
+Report.report3 = PercentageMessageDeliveredPerContactReport
+Report.report4 = LatencyPerContactReport
+Report.report5 = OverheadPerContactReport
+Report.report6 = NumberOfForwardReport
+Report.report7 = MessageCopyCountReport
+#Report.report2 = MessageStatsReportRR
+## Default settings for some routers settings
+ProphetRouter.secondsInTimeUnit = 30
+ProphetWithCV.secondsInTimeUnit = 30
